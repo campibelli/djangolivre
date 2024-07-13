@@ -1,0 +1,122 @@
+Django! It's Open-Source <3
+Creates websites and serves as a server
+>Full of features 'out-of-the-box' like admin sites, object-relational mapper (ORM, like java spring)
+auth package, caching data, etc!
+
++++++++++++++++++++++++++++++++++++++++
+++ FUNDAMENTAL CONCEPTS OF THE WEB ++++
+++++++++++++++++++++++++++++++++++++++++
+Client <-> server
+Acessed by a url
+(Uniform resource Locator)
+resources can be pages, jpgs, videos, etc
+
+Client --Requests-->
+Servers <--Respond--
+All through HTML! (hypertext markup language)
+
+_====_
+Nowadays...
+CLIENT-SIDE
+A server could return a HTML page,
+but also just the DATA so &&the client builds it&&
+!!And this is the industry best practice!!
+!!Done by React, Angular, Vue...!!
+
+-====-
+SERVER-SIDE
+Django, ASP.NET core, Express...
+The server is a gateway to the DATA
+
++++++++++++++++++++++++++++++++++++++++++++++
+THOSE ARE THE ENDPOINTS!
+/products  /orders   /etc
+++++++++++++++++++++++++++++++++++++++++++++++
+So, this is an API
+And i'll be using Django to build an API!!!
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++Setting up the++++++++++++++++++++++++++++++++++++
+++++++++++++++++DEVELOPMENT ENVIRONMENT++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>update python3 pip and install pipenv
+>python extension for vscode and utilities
+>pipenv install django
+>>pipenv run or pipenv shell from inside project
+
+.django-admin startproject storefront ++STARTS THE PROYECTO
+!!.django-admin startproject storefront .    ++. to start at same folder
+
+>>DIRECTORIES
+__init__.py defines a package
+settings.py for app settings
+urls.py for rls
+asgi/wsgi for DEPLOYMENT
+
+manage.py is a wrapper for django-admin (WELL USE THAT)
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+
++++++++++++++++++++commands+++++++++++++
+>python manage.py 
+(shows commands)
+
+>python manage.py runserver
+(runs the server lol) -http://127.0.0.1:8000/
+CTRL+C to stop
+
+
+>>setting up VENV python3 for making my life easier!
+>get path with pipenv --venv 
+'C:\Users\mememe\.virtualenvs\mine-032qyt\bin\python'
+
+VisualStudioCode>View>Command Pallete>Python Interpreter>Enter Path
+!!FOR WINDOWS it'll be "\Scripts\python.exe" bc windows is trash
+
+!!if !SyntaxError, Open a NEW TERMINAL WINDOWS and check if venv activated
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++ WORKING ON THE PROJECT +++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+settings.py> INSTALLED_APPS = 
+admin - manages data in admin interface
+auth - auth users!
+contenttypes - ?
+sessions - temporary memory, not used anymore, remove.
+messages - One time notifications for users
+staticfiles - Images, etc
+
+!YOU MUST ALWAYS REGISTER NEW APPS IN INSTALLED_APPS JSON!!!!!!!!!!
+
+---------
+Django works as a collection of apps, and we'll be doing just that.
+>python manage.py startapp playground
+(starts a new app, shows as a folder, study the structure)
+
+/migrations/ <<generates database tables
+/admin.py <defines the admin interface
+/apps.py <configurations for the app you're currently in
+/models.py <model classes to pull data and present to user
+/tests.py <unit tests
+/views.py <request handler
+
+----------------------------------------------------
++++++ And what exactly is a view? +++++++++++++
+----------------------------------------------------
+# It takes a request and returns a response...
+# A request handler!!! Sometimes called action
+
+A response is able to pull data from db, transform stuff, send emails, etc...
+is used by 'from django.http import HttpResponse'
+
+FOR EXAMPLE:
+def say_hello(request):
+    return HttpResponse('Hello World')
+
+But now we need to map it to an url (endpoint?)
+127.0.0.1:8000/playground/hello
+
+We need to map the view to an url in 'urls.py'(create if not done already)

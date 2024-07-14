@@ -120,3 +120,34 @@ But now we need to map it to an url (endpoint?)
 127.0.0.1:8000/playground/hello
 
 We need to map the view to an url in 'urls.py'(create if not done already)
+using 'from django.urls import path'
+and from .(same folder) import views
+'''
+#UrlConfiguration Module
+urlpatterns = [
+    path('playground/hello/',views.say_hello)
+]
+'''
+
+Cool! But now we need to import the urlconfig to the main project at urls.py/
+urlpatterns = [
+    path('admin/', admin.site.urls), 
+    path('playground/',include('playground.urls')) #playground/hello
+]
+(Using the include('configFile') function)
+
+and now we can(must) remove playground/ from playground(module) urls.py
+'''
+#UrlConfiguration Module
+urlpatterns = [
+    path('hello/',views.say_hello)
+]
+'''
+And we're done here!
+Hence, it's time for the sweet
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++          TEMPLATES!!!          +++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+They return html to the client
+

@@ -1,0 +1,89 @@
+1 - start django, as always
+>pipenv install django
+>>pipenv run or pipenv shell from inside project
+.django-admin startproject storefront ++STARTS THE PROYECTO
+!!.django-admin startproject storefront .    ++. to start at same folder
+>python manage.py 
+(shows commands)
+
+>python manage.py runserver
+(runs the server lol) -http://127.0.0.1:8000/
+>get path with pipenv --venv 
+'C:\Users\mememe\.virtualenvs\mine-032qyt\bin\python'
+
+VisualStudioCode>View>Command Pallete>Python Interpreter>Enter Path
+!!FOR WINDOWS it'll be "\Scripts\python.exe" bc windows is trash
+
+!!if !SyntaxError, Open a NEW TERMINAL WINDOWS and check if venv activated
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++ Good! Now let's database +++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>Kill server
+>python manage.py migrate (sets the database init config)
+>python manage.py createsuperuser
+>run server
+
+>127.0.0.1:8000/admin
+
+## Let's make a new app!
+python manage.py startapp tasks
+
+Folder struct should be 
+TODO/
+ -tasks
+ -todo(this is the main where we'll config settings)
+
+!always add newapps to settings.py in todo!
+
+We create the views, the index def, create urls.py inside tasks, import views from ., link the path,
+then we head to todo/urls.py, import include from django.urls, add the index path('',include('tasks.urls'))
+we make templates/ inside tasks,
+
+now 
+def index(request):
+    return HttpResponse('Failed succesfully!')
+
+becomes
+from django.shortcuts import render
+return render(request,'tasks/list.html')
+
+Now we set the database
+tasks/models.py, let's create something like tasks
+{...!!!...}
+Now that you have a model, migrate the database again
+>python manage.py makemigrations  #this is a commit
+>python manage.py migrate  #this is a push
+
+Now you have to register the table at admin.py
+
+```from .models import *
+
+admin.site.register(Task)```
+#Man this is getting interesting
+#You can now mess with the table through /admin
+
+But we still need to set the field to a view
+
+# in views.py
+from .models import *
+Make an object as in
+tasks = Task.objects.all() #grabs every task
+    
+    context = {'tasks':tasks} #sets it up for the html template
+
+And now we add it to the html as code!
+{%for task in tasks%}
+<div>
+<p>{{task}}</p>
+</div>
+{%endfor%}
+
+Let's learn Model Forms! They're an alternative to {{Class-based views}}
+
+They're a form representation of a model!
+>create a new pyfile forms.py
+We have the task model, so we specify it and djangocreates
+ form fields for us!
+
+

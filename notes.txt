@@ -150,4 +150,51 @@ Hence, it's time for the sweet
 +++++++++++++++++++++          TEMPLATES!!!          +++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 They return html to the client
+//But the real deal is returning data, so let's leave templates for now
 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++          Models           +++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# They store and retrieve data!
+1. Intro
+2. Building an e-commerce
+3. Organizing models in apps (important)
+4. Coding model classes
+
+Let's think, what do we need for an ecommerce?
+1. Product
+w/ title, description, price, inventory
+
+2.Collection/Category
+title
+
+They should be associated!
+[Product] ------ [Collection]
+         *      1,1
+
+# Where is the id?
+Django automatically creates it!
+
+# Some other models
+Cart, Customer, Tag
+
+Cart * --------------- *Product
+(created_at)
+
+Many to many?! Association class!
+CartItem(quantity)
+
+Customer(name, email)
+has many Order(placed_at)
+
+An order has many products, a product can be in many orders
+So we make OrderItem(quantity)!
+Product has tags (many to many too)
+
+#How do we model that in django?
+Store
+(Product, Collection, Cart, Cartitem, Order, OrderItem, Customer)
+Let's modularize it!
+Products, Customers, Carts, Order
+Now on hold.
